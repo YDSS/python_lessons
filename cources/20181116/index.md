@@ -167,12 +167,20 @@ macos设置环境变量
 
     ![img](./img/id_op.png)
 
-4. 位运算符
+7. 位运算符
 
     ![img](./img/bit_op.png)
 
     一个用法case：
 
+    ```python
+    def isOdd(num):
+        "判断一个数是否为偶数"
+        return (num & 1) == 0
+
+    print isOdd(10)
+    ```
+    
 ### 函数与lambda表达式
 
 1. 函数的组成
@@ -225,15 +233,132 @@ macos设置环境变量
         str = sayHi('may', 'hi')
         print str
         ```
+2. 函数作用域
+
+    ```python
+    outer = 1 # 函数外部变量
+
+    def testScope(): 
+        inner = 2 # 函数内部变量
+        print "outer: %d, inner: %d" % (outer, inner)
+
+    testScope() # outer: 1, inner: 2
+
+    print inner # 报错
+    ```
+3. lambda表达式
+    1. 不能使用`try...catch`，`if...else`语法。 问题：如果想使用条件判断，应该怎么办？
+    2. 高阶函数
+        
+        ```python
+        def double(arr, fn):
+            "若arr中的元素为奇数，使它翻倍"
+            for index in range(len(arr)):
+                val = arr[index]
+                if fn(val):
+                    arr[index] = val * 2
+
+        arr = [1, 2, 3]
+        double(arr, lambda val: val & 1)
+        print str(arr)
+        ```
+    3. 缺点：表现力差，难以追踪
 
 ### 模块
 
+1. import用法
+    1. 基本用法
+        ```python
+        # test.py
+        import test2
+
+        test2.sayHi('hi')
+
+        # test2.py
+        def sayHi(words):
+            print words
+        ```
+    2. 只引入某些属性
+        ```python
+        from test2 import sayHello 
+
+        sayHello()
+        ```
+    3. 改变属性名
+        ```python
+        from test2 import sayHello as sayHi
+
+        sayHi()
+        ```
+    4. 引入所有属性
+        ```python
+        from test2 import *
+
+        sayHi('there')
+        sayHello()
+        ```
+
+        尽量不要使用，会污染当前的运行环境
+    5. 问题：引入不同级目录的模块怎么办 
+        1. 上级目录
+            `sys.path.append('..')`改变当前目录
+        2. 下级目录
+            `__init__.py`
+2. 独立作用域
+
 ### 异常处理
 
-### 位运算
+1. 捕获异常
 
+    ```python
+    try:
+        # 可能会抛出异常的地方
+    except Exception:
+        # 处理异常
+    else:
+        # 没有抛出异常时会执行这里
+    finally:
+        # 无论是否有异常，都会执行这里
+    ```
+2. 异常类型：`http://www.runoob.com/python/python-exceptions.html`
+3. 主动抛出异常
+    ```python
+    def f(n):
+        "斐波那契数列实现"
+        if n <= 0: # 异常处理逻辑 
+            raise RuntimeError("斐波那契数列从1开始，请重新输入")
+        if n == 1:
+            return 1
+        elif n == 2:
+            return 1
+        else:
+            return f(n-1) + f(n-2)
+    ```
 ## 断点调试
 
 ## 代码风格
 
+1. 命名规范
+    1. 类名：驼峰式 和首字母缩略词：Person HighSchoolStudent
+    2. 变量名：lower_with_underscores 名词
+    3. 方法名和函数名：has_key 奥卡姆剃刀原则 动词或动宾短语
+    4. 模块名：lower_with_underscores.py
+    5. 常量名：UPPER_WITH_UNDERSCORES 全大写
+
+    关键点：表达清楚
+2. 语句
+    1. 赋值语句前后空格
+
+        ```python
+        # bad
+        a=1
+
+        # good
+        a = 1
+        ```
+    2. 分段
+
 ## 习题
+
+1. 输入某年某月某日，判断这一天是这一年的第几天   例如 1991.02.10是1991年的第41天
+2. 求一个数是否为素数
