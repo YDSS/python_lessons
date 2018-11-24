@@ -1,4 +1,7 @@
 # encoding=utf-8
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 # 多多接球游戏，面向过程思想实现
 
@@ -19,7 +22,9 @@ def pickBallAndBack(dog):
     print "%s 捡回了抛出去的球" % dog
 
 def startGame(master, dog):
-    master = "小魔女"
-    dog = "多多"
+    pickBall(master)
+    getAttention(master, dog)
+    throwBall(master)
+    pickBallAndBack(dog)
 
-    pickBall()
+startGame(master="小魔女", dog="多多")
