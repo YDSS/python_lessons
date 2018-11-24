@@ -1,5 +1,6 @@
-def sayHi(name, words):
-    return name + ' said: ' + words
+try:
+    print a 
+except Exception:
+    print str(Exception)
 
-str = sayHi('may', 'hi')
-print str
+print 'over'
