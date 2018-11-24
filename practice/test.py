@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-try:
-    print a 
-except Exception:
-    print str(Exception)
-
-print 'over'
-=======
 # coding=utf-8
 import sys
 reload(sys)
@@ -33,4 +25,3 @@ p = Person('ppp', 23, 'male')
 # print p.phoneNum
 # Person.talk('1')
 print Person.getClassName()
->>>>>>> 8145f2efc71e2c9a98e8b22d877e7c814357d190
