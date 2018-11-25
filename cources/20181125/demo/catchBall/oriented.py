@@ -30,13 +30,25 @@ class Dog():
     def pickBallAndBack(self):
         print "%s 捡回了抛出去的球" % self.name
 
-def startGame():
-    master = Master('小魔女')
-    dog = Dog('多多')
+class PickGame():
+    def __init__(self, master, dog):
+        self.master = master
+        self.dog = dog
+            
+    def startGame(self):
+        self.master.pickBall()
+        self.master.getAttention(self.dog)
+        self.master.throwBall()
+        self.dog.pickBallAndBack()
 
-    master.pickBall()
-    master.getAttention(dog)
-    master.throwBall()
-    dog.pickBallAndBack()
+    def __del__(self):
+        self.master = None
+        self.dog = None
+        print "执行析构函数"
 
-startGame()
+master = Master('a')
+dog = Dog('b')
+game = PickGame(master, dog)
+
+game.startGame()
+del game

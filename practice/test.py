@@ -4,13 +4,16 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 class Person(object):
-    __id = 1234567 # 私有变量
+    __id = '1234567' # 私有变量
     ancestor = 'ape' # 静态变量
 
     def __init__(self, name, age, gender):
         self.name = name # 成员变量
         self.age = age
         self.gender = gender
+    
+    def getId(self):
+        return self.__id[0:3] + '**' + self.__id[5:]
 
     # 静态方法
     @staticmethod
@@ -30,9 +33,10 @@ class Person(object):
         self.__privateFunc()
 
 p = Person('pp', 23, 'male')
-print Person.getClassName() # Person
-p.usePrivate() # test
-p.__privateFunc() # 报错
+print p.getId()
+# print Person.getClassName() # Person
+# p.usePrivate() # test
+# p.__privateFunc() # 报错
 
 
 # # print p.__wxNum
