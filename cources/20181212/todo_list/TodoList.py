@@ -1,12 +1,12 @@
 #coding=utf-8
 
-import Todo
+from Todo import *
 
 class TodoList():
-    __list # 存放所有的todo项
+    __list = {} # 存放所有的todo项
     
     def __init__(self):
-        self.__list = {}
+        pass
         
     def add(self, desc):
         "新增一个todo项"
@@ -19,6 +19,7 @@ class TodoList():
     
     def delete(self, id):
         "移除一个todo项"
+        id = int(id)
         if not self.__list.has_key(id): # 若id不存在于list中，返回false
             return False
 
@@ -41,7 +42,8 @@ class TodoList():
         "把列表中所有的todo项以字符串的形式返回"
         ret = ""
 
-        for todo in self.__list:
+        for key in self.__list:
+            todo = self.__list[key]
             ret += todo.toString()
             ret += "\n" # 换行符
 

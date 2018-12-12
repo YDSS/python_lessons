@@ -6,14 +6,14 @@
 
 import time
 
-id = 0
+# id = 0
 
-def createTodoId():
-    "生成todo项的id"
-    curId = id
-    id += 1
+# def createTodoId():
+#     "生成todo项的id"
+#     curId = id
+#     id += 1
 
-    return curId
+#     return curId
 
 def getCurrentTime():
     "获取当前时间"
