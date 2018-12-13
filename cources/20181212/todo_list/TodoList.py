@@ -19,7 +19,6 @@ class TodoList():
     
     def delete(self, id):
         "移除一个todo项"
-        id = int(id)
         if not self.__list.has_key(id): # 若id不存在于list中，返回false
             return False
 
@@ -36,7 +35,7 @@ class TodoList():
         todo = self.__list[id]
         todo.complete()
 
-        return True
+        return todo
 
     def show(self):
         "把列表中所有的todo项以字符串的形式返回"
