@@ -2,6 +2,7 @@
 
 from Todo import *
 from TodoList import *
+from utils import *
 
 ADD = "add"
 DELETE = "delete"
@@ -39,31 +40,41 @@ class TodoInputter():
         "接收用户添加todo的命令"
         desc = raw_input("enter desc: ")
         todo = self.todoList.add(desc)        
-
-        print todo.toString()
+        
+        utils.printSeparator(TodoInputter.printOpInfo, todo, "added a new todo:")
 
     def delete(self):
         "接收用户删除一个todo的命令"
-        id = raw_input("enter id: ")
-        ret = self.todoList.delete(id)
+        id = utils.inputInt("enter id: ")
 
-        if not ret:
+        todo = self.todoList.delete(id)
+
+        if not todo: # 这里todo是boolean
             print "id not found! try again"            
             self.delete()
         else:
-            print ret.toString()
+            utils.printSeparator(TodoInputter.printOpInfo, todo, "deleted a todo:")
 
     def complete(self):
         "接收用户将一个todo项设置成完成状态的命令"
-        id = raw_input("enter id: ")
-        ret = self.todoList.complete(id)
+        id = utils.inputInt("enter id: ")
+        todo = self.todoList.complete(id)
 
-        if not ret:
+        if not todo: # 这里todo是boolean
             print "id not found! try again"            
             self.complete()
         else:
-            print ret.toString()
+            utils.printSeparator(TodoInputter.printOpInfo, todo, "this todo is completed:")
 
     def show(self):
         "接收用户显示所有todo项的命令" 
-        print self.todoList.show()
+        def showTodolist():
+            print self.todoList.show()
+
+        utils.printSeparator(showTodolist)
+
+    @staticmethod
+    def printOpInfo(todo, tip):
+        "打印命令执行完成后的结果"
+        print tip
+        print todo.toString()
