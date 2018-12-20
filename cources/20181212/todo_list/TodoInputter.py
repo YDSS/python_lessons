@@ -15,8 +15,8 @@ QUIT = "quit"
 """
 class TodoInputter():
     
-    def __init__(self):
-        self.todoList = TodoList()
+    def __init__(self, list=None):
+        self.todoList = list or TodoList()
 
     def start(self):
         "开始接收用户命令"

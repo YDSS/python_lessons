@@ -23,12 +23,34 @@ def readFile():
 
 # readFile()
 
-def writeRow():
-    with open('todo.csv', 'ab') as f:
-        writer = csv.writer(f)
-        d = time.time()
-        row = [1, 'lalala', 0, d, d]
+def writeRow(row, f=None, filePath=None):
 
+    def writeRowInner(writer):
         writer.writerow(row)
 
-writeRow()
+    if f is not None:
+        writer = csv.writer(f)
+        writeRowInner(writer)
+    else:
+        if filePath is None:
+            raise Exception('need one of these args: f or filePath')
+
+        with open(filePath, 'ab') as f:
+            writer = csv.writer(f)
+            writeRowInner(writer)
+
+
+# writeRow(filePath="todo.csv", row=['id', 'desc', 'status', 'createTime', 'completeTime'])
+
+def createFileWithHeader(filePath):
+    header = ['id', 'desc', 'status', 'createTime', 'completeTime']
+
+    with open(filePath, 'w+') as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        
+# createFileWithHeader('todo2.csv')
+
+a = ""
+b = a or "1"
+print b
