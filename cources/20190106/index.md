@@ -86,6 +86,12 @@ phpMyAdmin支持导入、导出数据，可以把`csv`文件导入到一个表�
 
 ![img](F:\private\lesson\python_lessson_for_gf\python_lessons\cources\20190106\img\import.png)
 
+### 更换主题
+
+1. 在[https://www.phpmyadmin.net/themes/#pma_4_8](https://www.phpmyadmin.net/themes/#pma_4_8)上选择你喜欢的主题，下载并解压到`xampp\phpMyAdmin\themes`目录下
+2. 修改配置文件`xampp\phpMyAdmin\libraries\config.default.php`中的`$cfg['ThemeDefault']`配置，值为themes目录下这个主题的**文件夹名**。
+3. 刷新页面即可。如果没有更新，删除cookie再刷新
+
 导出同理
 
 ### 完整的SQL语法教程
