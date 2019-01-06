@@ -5,8 +5,8 @@ from Todo import *
 class TodoList():
     __list = {} # 存放所有的todo项
     
-    def __init__(self):
-        pass
+    def __init__(self, list=None):
+        self.__list = list or {} 
         
     def add(self, desc):
         "新增一个todo项"

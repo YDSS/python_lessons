@@ -14,10 +14,12 @@ class Todo():
     """
     __status = 0 # 待办项初始化时默认为未完成
 
-    def __init__(self, desc=""):
-        self.__id = self.__createTodoId()
+    def __init__(self, desc="", id=None, status=0, createTime=None, completeTime=None):
+        self.__id = id or self.__createTodoId()
+        self.__status = status
         self.desc = desc
-        self.createTime = utils.getCurrentTime()
+        self.createTime = createTime or utils.getCurrentTime()
+        self.completeTime = completeTime
 
     def getId(self):
         "获取todo的id"
