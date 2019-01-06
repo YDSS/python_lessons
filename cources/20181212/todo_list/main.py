@@ -11,3 +11,4 @@ import time
 d = time.time(time.localtime())
 store = TodoStore('todo.csv')
 todo = Todo(id=10, desc="lalala", status=0, createTime=d, completeTime=d)
+store.
