@@ -95,7 +95,7 @@
                 `use <数据库名>`
     4. 数据库编程（简单介绍）
 2. 使用python操作数据库
-    1. 使用MySQLdb
+    1. 使用mysql-connector-python or MySQLdb
         1. 安装 [https://www.codegood.com/archives/129](https://www.codegood.com/archives/129) 下载对应bit的exe文件，安装即可
 
             api文档：http://mysql-python.sourceforge.net/MySQLdb.html#functions-and-attributes
