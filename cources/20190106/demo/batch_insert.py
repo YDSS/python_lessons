@@ -5,6 +5,7 @@ import MySQLdb
 import time
 import csv
 import math
+import pandas
 
 # 获取数据库对象
 db = MySQLdb.connect(host=db_info.host, user=db_info.user, db=db_info.db_name, charset='utf8')
@@ -44,6 +45,12 @@ def readRowsOnceATime(path, total, fn):
             
             rows.append(row)
             index += 1
+
+    apply(fn, (rows,))
+
+def readRowsOnceATimeEnhance(path, interval, fn):
+    "用pandas读取csv文件的内容，每次读取interval行,传给fn"
+    
 
     apply(fn, (rows,))
 
