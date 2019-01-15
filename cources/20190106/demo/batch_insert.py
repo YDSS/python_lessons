@@ -63,7 +63,6 @@ def insertRowOnceATime(*args):
     try:
         cursor.execute(sql)
         db.commit()
-        # total += cursor.rowcount
     except Exception, Argument:
         # 打印报错信息
         print Argument

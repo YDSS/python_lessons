@@ -1,11 +1,11 @@
 # coding=utf-8
 
 import db_info
-import MySQLdb
+import mysql.connector
 import time
 
 # 获取数据库对象
-db = MySQLdb.connect(host=db_info.host, user=db_info.user, db=db_info.db_name, charset='utf8')
+db = mysql.connector.connect(host=db_info.host, user=db_info.user, password=db_info.passwd, database=db_info.db_name)
 # 获取数据库游标
 cursor = db.cursor()
 
@@ -14,7 +14,7 @@ now_datetime = time.strftime("%Y-%m-%d %H:%M:%S", now)
 now_date = time.strftime("%Y-%m-%d", now)
 
 sql = """
-    insert into data_min values('%s', '%s', %f) 
+    insert into data_min(date, time, num) values('%s', '%s', %f) 
     """ % (now_date, now_datetime, .5)
 
 print sql

@@ -7,7 +7,6 @@
         1. 变量类型
         2. 添加用户、授权
             1. 给用户授权
-
                 `grant select on 数据库.* to 用户名@登录主机 identified by “密码”`
             2. 添加用户
 
@@ -89,13 +88,13 @@
                 `show databases`
             3.  删除某个数据库
 
-                `drop database <数据库名>`
+                `drop database <数据库名drop database <数据库名>>`
             4. 连接数据库
 
                 `use <数据库名>`
-    4. 数据库编程（简单介绍）
+    4. 存储过程（简单介绍）
 2. 使用python操作数据库
-    1. 使用MySQLdb
+    1. 使用mysql-connector-python or MySQLdb
         1. 安装 [https://www.codegood.com/archives/129](https://www.codegood.com/archives/129) 下载对应bit的exe文件，安装即可
 
             api文档：http://mysql-python.sourceforge.net/MySQLdb.html#functions-and-attributes
