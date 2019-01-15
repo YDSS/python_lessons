@@ -5,7 +5,7 @@ import MySQLdb
 import time
 import csv
 import math
-import pandas
+import pandas as pd
 
 # 获取数据库对象
 db = MySQLdb.connect(host=db_info.host, user=db_info.user, db=db_info.db_name, charset='utf8')
@@ -50,9 +50,17 @@ def readRowsOnceATime(path, total, fn):
 
 def readRowsOnceATimeEnhance(path, interval, fn):
     "用pandas读取csv文件的内容，每次读取interval行,传给fn"
-    
+    index = 0
 
-    apply(fn, (rows,))
+    while True:
+        try:
+            df = pd.read_csv(path, skiprows=index, nrows=interval)  
+        except pd.errors.EmptyDataError, Argument:
+            break
+        else:
+            rows = df.values[:] 
+            apply(fn, (rows,))
+            index += interval
 
 def insertRowOnceATime(*args):
     "每次向数据库里插入一条数据，然后直接提交事务"
@@ -106,10 +114,16 @@ def getTotalCount():
     cursor.execute('select count(1) from data_min')
     return cursor.fetchone()[0]
 
+def testRead(*args):
+    rows = args[0]
+    print len(rows)
+    print rows[0]
+
 # 计算插入总共耗费的时间
 now = time.time()
 # readRowsAndCallback("data.csv", 1000, insertRowOnceATime)
-readRowsOnceATime("data.csv", 100000, insertRowOnceATime)
+# readRowsOnceATime("data.csv", 100000, insertRowOnceATime)
+readRowsOnceATimeEnhance("data.csv", 100, testRead)
 cost = time.time() - now
 
 # print "insert %d rows totally" % total
